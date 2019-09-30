@@ -1,33 +1,32 @@
-import path from 'path';
+const path = require('path');
 
 const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
-  // モード値を production に設定すると最適化された状態で、
-  // development に設定するとソースマップ有効でJSファイルが出力される
   mode: 'development',
-  // メインとなるJavaScriptファイル（エントリーポイント）
   entry: src + '/index.tsx',
-  // ファイルの出力設定
   output: {
-    //  出力ファイルのディレクトリ名
     path: dist,
-    // 出力ファイル名
     filename: 'index.js',
+  },
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+  devServer: {
+    open: true, //ブラウザを自動で開く
+    openPage: 'index.html', //自動で指定したページを開く
+    contentBase: path.join(__dirname, 'public'), // HTML等コンテンツのルートディレクトリ
+    watchContentBase: true, //コンテンツの変更監視をする
+    port: 3000, // ポート番号
   },
   module: {
     rules: [
       {
-        // 拡張子 .ts もしくは .tsx の場合
         test: /\.tsx?$/,
-        // TypeScript をコンパイルする
-        use: 'ts-loader',
+        use: [{ loader: 'ts-loader' }],
       },
     ],
-  },
-  // import 文で .ts や .tsx ファイルを解決するため
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
 };
