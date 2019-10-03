@@ -1,12 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
-  mode: 'development',
   entry: src + '/index.tsx',
   output: {
     path: dist,
@@ -32,7 +30,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
