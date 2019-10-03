@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Hello from './Hello';
 
-const App: React.FC = () => {
-  return <p> Hello React!</p>;
-};
-
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Hello content="hello world" />, document.getElementById('app'));
