@@ -5,7 +5,7 @@ const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
-  entry: src + '/index.tsx',
+  entry: src + '/tsx/index.tsx',
   output: {
     path: dist,
     filename: 'index.js',
