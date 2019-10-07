@@ -4,7 +4,11 @@ import Wrapper from './components/Card';
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  return <Wrapper />;
+  return (
+    <div>
+      <Wrapper></Wrapper>
+    </div>
+  );
 };
 
 export default App;
