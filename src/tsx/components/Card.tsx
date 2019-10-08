@@ -1,15 +1,9 @@
 import React from 'react';
-import { Cards, Card } from 'react-swipe-card';
+import Cards, { Card } from 'react-swipe-card';
 
 const Wrapper: React.FC = () => {
-  const CustomAlertLeft = () => (
-    <span>
-      <h1>aaa</h1>
-    </span>
-  );
-
   return (
-    <Cards alertLeft={<CustomAlertLeft />} onEnd={() => {}}>
+    <Cards>
       <Card></Card>
     </Cards>
   );

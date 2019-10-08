@@ -1,5 +1,5 @@
 declare module 'react-swipe-card' {
-  export const Cards: React.ComponentClass<CardsProps>;
+  const Cards: React.ComponentClass<CardsProps>;
   export const Card: React.ComponentClass<CardProps>;
   interface CardsProps {
     className?: string;
@@ -16,4 +16,5 @@ declare module 'react-swipe-card' {
     onSwipeTop?: () => void;
     onSwipeBottom?: () => void;
   }
+  export default Cards;
 }
