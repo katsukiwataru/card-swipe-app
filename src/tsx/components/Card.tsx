@@ -7,12 +7,12 @@ import React from 'react';
 //   AnimatedValue
 // } from "react-spring";
 
-import { useSprings, animated } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 
 interface Props {}
 
 const Card: React.FC<Props> = () => {
-  const props = useSprings({
+  const props = useSpring({
     opacity: 1,
     from: { opacity: 0 },
   });
