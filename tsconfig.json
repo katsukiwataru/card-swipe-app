@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "strictNullChecks": true,
-    "noUnusedLocals" : true,
+    "noUnusedLocals": true,
     "esModuleInterop": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "sourceMap": true,
     "noImplicitAny": true,
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es2020"
