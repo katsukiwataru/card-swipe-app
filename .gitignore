@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .envrc
+
+src/tsx/components/test.tsx
