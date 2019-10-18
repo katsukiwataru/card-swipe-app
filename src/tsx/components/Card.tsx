@@ -15,7 +15,7 @@ type DeckProps = {
 
 type useSpringsOverride<T extends Object> = [
   AnimatedValue<T>[],
-  (cb: (i: number) => Partial<UseSpringProps<T>> | undefined) => void,
+  (callback: (i: number) => Partial<UseSpringProps<T>> | undefined) => void,
 ];
 
 const to = (i: number): DeckProps => ({
@@ -59,13 +59,12 @@ function App() {
       };
     });
 
-    //終わったあとの処理
-    if (!down && gone.size === cards.length) {
-      setTimeout(() => {
-        gone.clear();
-        set((i) => to(i));
-      }, 600);
-    }
+    // if (!down && gone.size === cards.length) {
+    //   setTimeout(() => {
+    //     gone.clear();
+    //     set((i) => to(i));
+    //   }, 600);
+    // }
   });
 
   return (
