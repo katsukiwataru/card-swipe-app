@@ -26,7 +26,7 @@ const to = (i: number): DeckProps => ({
   delay: i * 100,
 });
 
-const from = (_: number): DeckProps => ({ x: 0, rot: 0, scale: 1.5, y: -1000 });
+const from = (_: number): DeckProps => ({ x: 0, rot: 0, scale: 1.5, y: 0 });
 
 const trans = (r: number, s: number) =>
   `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
@@ -49,8 +49,7 @@ function App() {
       const isGone = gone.has(index);
       const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
       const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
-
-      const scale = 1;
+      const scale = down ? 1.1 : 1;
       return {
         x,
         rot,
