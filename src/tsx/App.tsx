@@ -5,9 +5,9 @@ interface Props {}
 
 const App: React.FC<Props> = () => {
   return (
-    <div>
+    <>
       <Card></Card>
-    </div>
+    </>
   );
 };
 
