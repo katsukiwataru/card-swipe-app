@@ -21,12 +21,13 @@ type useSpringsOverride<T extends Object> = [
 const to = (i: number): DeckProps => ({
   x: 0,
   y: i * -4,
+  // y: 0,
   scale: 1,
-  rot: -10 + Math.random() * 20,
-  delay: i * 100,
+  rot: 0,
+  delay: 0,
 });
 
-const from = (_: number): DeckProps => ({ x: 0, rot: 0, scale: 1.5, y: 0 });
+const from = (_: number): DeckProps => ({ x: 0, rot: 0, scale: 1, y: 0 });
 
 const trans = (r: number, s: number) =>
   `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
@@ -37,12 +38,15 @@ function App() {
     ...to(i),
     from: from(i),
   })) as useSpringsOverride<DeckProps>;
+  // console.log('props', props);
 
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     const trigger = velocity > 0.2;
     const dir = xDir < 0 ? -1 : 1;
-
-    if (!down && trigger) gone.add(index);
+    if (!down && trigger) {
+      gone.add(index);
+      // console.log({ args: [index], down, delta: [xDelta], direction: [xDir], velocity });
+    }
 
     set((i) => {
       if (index !== i) return;
@@ -50,6 +54,7 @@ function App() {
       const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
       const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
       const scale = down ? 1.1 : 1;
+      // console.log('isGone', isGone, 'x', x, 'rot', rot, 'scale', scale);
       return {
         x,
         rot,
