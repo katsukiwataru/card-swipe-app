@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import Img from '../../img/orca.png';
 import { useSprings, animated, interpolate, UseSpringProps, AnimatedValue } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
-
-// type Props = {
-//   updateParentState(): void;
-// };
+import Button from './Button';
 
 type DeckProps = {
   x: number;
@@ -34,7 +31,7 @@ const from = (_: number): DeckProps => ({ x: 0, rot: 0, scale: 1, y: 0 });
 const trans = (r: number, s: number) =>
   `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
 
-const App: React.FC = () => {
+const Card: React.FC = () => {
   const cards = [Img, Img, Img];
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
@@ -42,22 +39,13 @@ const App: React.FC = () => {
     ...to(i),
     from: from(i),
   })) as useSpringsOverride<DeckProps>;
-  // console.log('props', props);
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     animation({ index, down, xDelta, xDir, velocity });
-    // console.log(velocity);
-    // if (!down && gone.size === cards.length) {
-    //   setTimeout(() => {
-    //     gone.clear();
-    //     set((i) => to(i));
-    //   }, 600);
-    // }
   });
   const handleClick = () => {
     if (length <= 0) {
       return;
     }
-    console.log('aaa');
     animation({
       index: length - 1,
       down: false,
@@ -65,13 +53,6 @@ const App: React.FC = () => {
       xDir: 1,
       velocity: 0.3,
     });
-    setLength(length - 1);
-    // if (length === 0) {
-    //   setLength(cards.length - 1);
-    // }
-    // } else {
-    //   setLength(length - 1);
-    // }
   };
 
   const animation = ({ index, down, xDelta, xDir, velocity }: any) => {
@@ -87,7 +68,6 @@ const App: React.FC = () => {
       const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
       const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
       const scale = down ? 1.1 : 1;
-      console.log(gone, 'isGone', isGone, 'x', x, 'rot', rot, 'scale', scale);
       return {
         x,
         rot,
@@ -96,11 +76,12 @@ const App: React.FC = () => {
         config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
       };
     });
+    setLength(index);
   };
 
   return (
     <>
-      <button onClick={handleClick}>aaa</button>
+      <Button onClick={handleClick} />
       {props.map(({ x, y, rot, scale }, i) => (
         <animated.div
           key={i}
@@ -123,4 +104,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Card;
