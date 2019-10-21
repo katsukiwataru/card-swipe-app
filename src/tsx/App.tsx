@@ -1,13 +1,14 @@
 import React from 'react';
-import Card from './components/Card';
+import Card from './containers/Card';
+import Img from '../img/orca.png';
 
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  // const [state, setState] = useState(0);
+  const cards = [Img, Img, Img];
   return (
     <>
-      <Card></Card>
+      <Card cards={cards}></Card>
     </>
   );
 };
