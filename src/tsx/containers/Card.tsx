@@ -13,6 +13,14 @@ type Props = {
   cards: string[];
 };
 
+type Animation = {
+  index: number;
+  down: boolean;
+  xDelta: number;
+  xDir: number;
+  velocity: number;
+};
+
 const Card: React.FC<Props> = ({ cards }) => {
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
@@ -41,7 +49,7 @@ const Card: React.FC<Props> = ({ cards }) => {
     });
   };
 
-  const animation = ({ index, down, xDelta, xDir, velocity }: any) => {
+  const animation = ({ index, down, xDelta, xDir, velocity }: Animation) => {
     const trigger = velocity > 0.2;
     const dir = xDir < 0 ? -1 : 1;
     if (!down && trigger) gone.add(index);
