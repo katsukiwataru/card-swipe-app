@@ -1,13 +1,15 @@
 import React from 'react';
 
 type Props = {
-  onClick(): void;
+  onClickRight: () => void;
+  onClickLeft: () => void;
 };
 
-const Button: React.FC<Props> = ({ onClick }) => {
+const Button: React.FC<Props> = ({ onClickRight, onClickLeft }) => {
   return (
     <>
-      <button onClick={onClick}>aaa</button>
+      <button onClick={onClickLeft}>NOPE</button>
+      <button onClick={onClickRight}>LIKE</button>
     </>
   );
 };
