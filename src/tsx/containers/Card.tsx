@@ -36,7 +36,7 @@ const Card: React.FC<Props> = ({ cards }) => {
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     animation({ index, down, xDelta, xDir, velocity });
   });
-  const handleClick = () => {
+  const handleRightClick = () => {
     if (length <= 0) {
       return;
     }
@@ -45,6 +45,19 @@ const Card: React.FC<Props> = ({ cards }) => {
       down: false,
       xDelta: 100,
       xDir: 1,
+      velocity: 0.3,
+    });
+  };
+
+  const handleLeftClick = () => {
+    if (length <= 0) {
+      return;
+    }
+    animation({
+      index: length - 1,
+      down: false,
+      xDelta: 100,
+      xDir: -1,
       velocity: 0.3,
     });
   };
@@ -59,6 +72,7 @@ const Card: React.FC<Props> = ({ cards }) => {
       const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
       const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
       const scale = down ? 1.1 : 1;
+      // console.log(isGone, (200 + window.innerWidth) * dir);
       return {
         x,
         rot,
@@ -72,7 +86,7 @@ const Card: React.FC<Props> = ({ cards }) => {
 
   return (
     <>
-      <Button onClick={handleClick} />
+      <Button onClickRight={handleRightClick} onClickLeft={handleLeftClick} />
       <CardComponent deckList={deckList} bind={bind} cards={cards} />
     </>
   );
