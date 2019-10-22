@@ -21,6 +21,8 @@ type Animation = {
   velocity: number;
 };
 
+type animationFunction = (arg: Animation) => void;
+
 const Card: React.FC<Props> = ({ cards }) => {
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
@@ -56,13 +58,13 @@ const Card: React.FC<Props> = ({ cards }) => {
     animation({
       index: length - 1,
       down: false,
-      xDelta: 100,
+      xDelta: -100,
       xDir: -1,
       velocity: 0.3,
     });
   };
 
-  const animation = ({ index, down, xDelta, xDir, velocity }: Animation) => {
+  const animation: animationFunction = ({ index, down, xDelta, xDir, velocity }) => {
     const trigger = velocity > 0.2;
     const dir = xDir < 0 ? -1 : 1;
     if (!down && trigger) gone.add(index);
@@ -72,7 +74,6 @@ const Card: React.FC<Props> = ({ cards }) => {
       const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
       const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
       const scale = down ? 1.1 : 1;
-      // console.log(isGone, (200 + window.innerWidth) * dir);
       return {
         x,
         rot,
