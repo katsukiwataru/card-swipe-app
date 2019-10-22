@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSprings, UseSpringProps, AnimatedValue } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import Button from '../components/Button';
@@ -34,6 +34,18 @@ const Card: React.FC<Props> = ({ cards }) => {
     delay: 0,
     from: { x: 0, rot: 0, scale: 1, y: 0 },
   })) as useSpringsOverride<DeckProps>;
+
+  useEffect(() => {
+    const ho = async () => {
+      try {
+        const hpge = await fetch('https://qiita.com/api/v2/users');
+        console.log(hpge);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    ho();
+  }, []);
 
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     animation({ index, down, xDelta, xDir, velocity });
