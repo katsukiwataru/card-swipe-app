@@ -3,3 +3,9 @@ declare type User = {
   profileImageUrl: string;
   id: string;
 };
+
+declare type ResponseUser = {
+  url: string;
+  profile_image_url: string;
+  id: string;
+};
