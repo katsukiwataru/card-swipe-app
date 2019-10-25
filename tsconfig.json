@@ -2,6 +2,7 @@
   "compilerOptions": {
     "strictNullChecks": true,
     //"typeRoots": ["types", "node_modules/@types"],
+    "typeRoots": ["types"],
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "noImplicitThis": true,
