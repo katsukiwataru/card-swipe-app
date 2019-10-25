@@ -15,7 +15,10 @@ const App: React.FC<Props> = () => {
         const QiitaUsers = await fetch('https://qiita.com/api/v2/users', {
           method: 'GET',
         });
-        const users: User[] = await QiitaUsers.json();
+        const resUsers: ResponseUser[] = await QiitaUsers.json();
+        const users = resUsers.map<User>(({ id, profile_image_url, url }) => {
+          return { id, profileImageUrl: profile_image_url, url };
+        });
         setCards(users);
       } catch (error) {
         console.log(error);
