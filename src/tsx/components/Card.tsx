@@ -13,7 +13,7 @@ export type DeckProps = {
 type Props = {
   deckList: DeckProps[];
   bind: (i: number) => ReactEventHandlers;
-  cards: string[];
+  cards: User[];
 };
 
 const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
