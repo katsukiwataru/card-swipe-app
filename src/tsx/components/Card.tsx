@@ -33,10 +33,10 @@ const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
                 [rot, scale],
                 (r, s) => `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`,
               ),
-              backgroundImage: `url(${cards[i]})`,
+              backgroundImage: `url(${cards[i].profileImageUrl})`,
             }}
           >
-            <h1>hoge</h1>
+            <h1>{cards[i].id}</h1>
           </animated.div>
         </animated.div>
       ))}
