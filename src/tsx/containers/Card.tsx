@@ -24,7 +24,6 @@ type Animation = {
 type animationFunction = (arg: Animation) => void;
 
 const Card: React.FC<Props> = ({ cards }) => {
-  console.log(cards);
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
   const [deckList, set] = useSprings<DeckProps>(cards.length, (i) => ({
