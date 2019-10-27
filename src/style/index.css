@@ -24,7 +24,7 @@ body {
   height: 100%;
 }
 
-#root > div {
+#root > .swipeArea {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -34,7 +34,7 @@ body {
   justify-content: center;
 }
 
-#root > div > div {
+#root > .swipeArea > .cardArea {
   background-color: white;
   background-size: auto 85%;
   background-repeat: no-repeat;
