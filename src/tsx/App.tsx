@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Card from './containers/Card';
 import styled from 'styled-components';
-// import Img from '../img/orca.png';
 
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  // console.log(Img);
-  // const cards = [Img, Img, Img];
   const [cards, setCards] = useState<User[]>([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const [pageNum, setPageNum] = useState(1);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -24,7 +22,8 @@ const App: React.FC<Props> = () => {
         const users = resUsers.map<User>(({ id, profile_image_url, url }) => {
           return { id, profileImageUrl: profile_image_url, url };
         });
-        setCards(users);
+        // APIのレスポンス表示を降順にする
+        setCards(users.reverse());
       } catch (error) {
         setError(true);
       }
@@ -35,7 +34,7 @@ const App: React.FC<Props> = () => {
 
   return (
     <>
-      <Card cards={cards}></Card>
+      <Card cards={cards} setLoading={setLoading} />
       {error && (
         <ErrorTitle style={{ color: `red` }}>
           <p>some error occurred, while fetching api</p>

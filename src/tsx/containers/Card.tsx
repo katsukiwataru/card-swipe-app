@@ -11,6 +11,7 @@ type useSpringsOverride<T extends Object> = [
 
 type Props = {
   cards: User[];
+  setLoading: (loading: boolean) => void;
 };
 
 type Animation = {
@@ -23,7 +24,7 @@ type Animation = {
 
 type animationFunction = (arg: Animation) => void;
 
-const Card: React.FC<Props> = ({ cards }) => {
+const Card: React.FC<Props> = ({ cards, setLoading }) => {
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
   const [deckList, set] = useSprings<DeckProps>(cards.length, (i) => ({
@@ -36,13 +37,14 @@ const Card: React.FC<Props> = ({ cards }) => {
   })) as useSpringsOverride<DeckProps>;
 
   useEffect(() => {
-    setLength(cards.length);
-    // return setLength(cards.length);
-  }, [cards]);
+    if (gone.size === cards.length) {
+      setLoading(true);
+    }
+  });
 
   useEffect(() => {
-    console.log(length);
-  }, [length]);
+    setLength(cards.length);
+  }, [cards]);
 
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     animation({ index, down, xDelta, xDir, velocity });
@@ -98,10 +100,12 @@ const Card: React.FC<Props> = ({ cards }) => {
   };
 
   const mouseDownLeft = () => {
-    console.log('moving');
+    // console.log('moving');
+    // TODO: buttonの長押しでstyleの変更
   };
   const mouseDownRight = () => {
-    console.log('moving');
+    // console.log('moving');
+    // TODO: buttonの長押しでstyleの変更
   };
 
   return (
