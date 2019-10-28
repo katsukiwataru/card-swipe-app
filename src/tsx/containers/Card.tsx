@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSprings, UseSpringProps, AnimatedValue } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import Button from '../components/Button';
@@ -34,7 +34,10 @@ const Card: React.FC<Props> = ({ cards }) => {
     delay: 0,
     from: { x: 0, rot: 0, scale: 1, y: 0 },
   })) as useSpringsOverride<DeckProps>;
-  // const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setLength(cards.length);
+  }, [cards]);
 
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     animation({ index, down, xDelta, xDir, velocity });
