@@ -1,6 +1,7 @@
 import React from 'react';
 import { animated, interpolate } from 'react-spring';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
+import styled from 'styled-components';
 
 export type DeckProps = {
   x: number;
@@ -38,12 +39,17 @@ const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
               backgroundImage: `url(${cards[i].profileImageUrl})`,
             }}
           >
-            <h1>{cards[i].id}</h1>
+            <UserName>{cards[i].id}</UserName>
           </animated.div>
         </animated.div>
       ))}
     </>
   );
 };
+
+const UserName = styled.h1`
+  word-wrap: break-word;
+  margin: 30px 30px;
+`;
 
 export default Card;
