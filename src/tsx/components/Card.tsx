@@ -40,6 +40,7 @@ const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
             }}
           >
             <UserName>{cards[i].id}</UserName>
+            <UserAge>Age {i + 20}</UserAge>
           </animated.div>
         </animated.div>
       ))}
@@ -50,6 +51,13 @@ const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
 const UserName = styled.h1`
   word-wrap: break-word;
   margin: 30px 30px;
+  font-size: 28px;
+`;
+
+const UserAge = styled.p`
+  word-wrap: break-word;
+  margin: 30px 30px;
+  font-size: 18px;
 `;
 
 export default Card;
