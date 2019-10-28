@@ -36,7 +36,7 @@ body {
 
 #root > .swipeArea > .cardArea {
   background-color: white;
-  background-size: auto 75%;
+  background-size: auto 50%;
   background-repeat: no-repeat;
   background-position: center center;
   width: 45vh;
