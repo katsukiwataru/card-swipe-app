@@ -52,9 +52,8 @@ const Card: React.FC<Props> = ({ cards }) => {
     if (length <= 0) {
       return;
     }
-    console.log(length);
     animation({
-      index: length,
+      index: length - 1,
       down: false,
       xDelta: 100,
       xDir: 1,
@@ -66,9 +65,8 @@ const Card: React.FC<Props> = ({ cards }) => {
     if (length <= 0) {
       return;
     }
-    console.log(length);
     animation({
-      index: length,
+      index: length - 1,
       down: false,
       xDelta: -100,
       xDir: -1,
@@ -86,6 +84,9 @@ const Card: React.FC<Props> = ({ cards }) => {
       const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
       const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
       const scale = down ? 1.1 : 1;
+      if (isGone) {
+        setLength(index);
+      }
       return {
         x,
         rot,
@@ -94,7 +95,6 @@ const Card: React.FC<Props> = ({ cards }) => {
         config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
       };
     });
-    setLength(index);
   };
 
   const mouseDownLeft = () => {
