@@ -4,14 +4,20 @@ import styled from 'styled-components';
 type Props = {
   onClickRight: () => void;
   onClickLeft: () => void;
+  onMouseDownLeft: () => void;
+  onMouseDownRight: () => void;
 };
 
-const Button: React.FC<Props> = ({ onClickRight, onClickLeft }) => {
+const Button: React.FC<Props> = ({ onClickRight, onClickLeft, onMouseDownLeft, onMouseDownRight }) => {
   return (
     <>
       <ButtonsStyle>
-        <ButtonStyleNope onClick={onClickLeft}>NOPE</ButtonStyleNope>
-        <ButtonStyleLike onClick={onClickRight}>LIKE</ButtonStyleLike>
+        <ButtonStyleNope onMouseDown={onMouseDownLeft} onClick={onClickLeft}>
+          NOPE
+        </ButtonStyleNope>
+        <ButtonStyleLike onMouseDown={onMouseDownRight} onClick={onClickRight}>
+          LIKE
+        </ButtonStyleLike>
       </ButtonsStyle>
     </>
   );
@@ -26,11 +32,12 @@ const ButtonsStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: none;
-  margin: 10px;
+  margin: 20px;
   border-radius: 50%;
+  outline: none;
 `;
 
 const ButtonStyleNope = styled(ButtonStyle)`

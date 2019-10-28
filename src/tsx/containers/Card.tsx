@@ -37,17 +37,24 @@ const Card: React.FC<Props> = ({ cards }) => {
 
   useEffect(() => {
     setLength(cards.length);
+    // return setLength(cards.length);
   }, [cards]);
+
+  useEffect(() => {
+    console.log(length);
+  }, [length]);
 
   const bind = useDrag(({ args: [index], down, delta: [xDelta], direction: [xDir], velocity }) => {
     animation({ index, down, xDelta, xDir, velocity });
   });
+
   const handleRightClick = () => {
     if (length <= 0) {
       return;
     }
+    console.log(length);
     animation({
-      index: length - 1,
+      index: length,
       down: false,
       xDelta: 100,
       xDir: 1,
@@ -59,8 +66,9 @@ const Card: React.FC<Props> = ({ cards }) => {
     if (length <= 0) {
       return;
     }
+    console.log(length);
     animation({
-      index: length - 1,
+      index: length,
       down: false,
       xDelta: -100,
       xDir: -1,
@@ -89,9 +97,21 @@ const Card: React.FC<Props> = ({ cards }) => {
     setLength(index);
   };
 
+  const mouseDownLeft = () => {
+    console.log('moving');
+  };
+  const mouseDownRight = () => {
+    console.log('moving');
+  };
+
   return (
     <>
-      <Button onClickRight={handleRightClick} onClickLeft={handleLeftClick} />
+      <Button
+        onClickRight={handleRightClick}
+        onClickLeft={handleLeftClick}
+        onMouseDownLeft={mouseDownLeft}
+        onMouseDownRight={mouseDownRight}
+      />
       <CardComponent deckList={deckList} bind={bind} cards={cards} />
     </>
   );
