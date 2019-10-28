@@ -17,21 +17,19 @@ type Props = {
 };
 
 const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
-  const swipeArea = 'swipeArea';
-  const cardArea = 'cardArea';
   return (
     <>
       {deckList.map(({ x, y, rot, scale }, i) => (
         <animated.div
           key={i}
-          className={swipeArea}
+          className="swipeArea"
           style={{
             transform: interpolate([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
           }}
         >
           <animated.div
             {...bind(i)}
-            className={cardArea}
+            className="cardArea"
             style={{
               transform: interpolate(
                 [rot, scale],
