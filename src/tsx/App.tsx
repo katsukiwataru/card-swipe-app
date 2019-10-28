@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './containers/Card';
+import styled from 'styled-components';
 // import Img from '../img/orca.png';
 
 interface Props {}
@@ -35,14 +36,32 @@ const App: React.FC<Props> = () => {
   return (
     <>
       <Card cards={cards}></Card>
-      {error && <div style={{ color: `red` }}>some error occurred, while fetching api</div>}
+      {error && (
+        <ErrorTitle style={{ color: `red` }}>
+          <p>some error occurred, while fetching api</p>
+        </ErrorTitle>
+      )}
       {loading && (
-        <div style={{ color: `green` }}>
-          fetching books for "<strong>User</strong>"
-        </div>
+        <LoadingTitle style={{ color: `green` }}>
+          <p>
+            fetching books for "<strong>User</strong>"
+          </p>
+        </LoadingTitle>
       )}
     </>
   );
 };
 
 export default App;
+
+const Title = styled.h1`
+  font-size: 24px;
+  text-align: center;
+`;
+const ErrorTitle = styled(Title)`
+  color: #c33;
+`;
+
+const LoadingTitle = styled(Title)`
+  color: #3b7;
+`;
