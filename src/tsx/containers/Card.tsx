@@ -12,7 +12,7 @@ type useSpringsOverride<T extends Object> = [
 type Props = {
   cards: User[];
   setLoading: (loading: boolean) => void;
-  setPageNum: (PageNum: number) => void;
+  nextPage: () => void;
 };
 
 type Animation = {
@@ -25,10 +25,9 @@ type Animation = {
 
 type animationFunction = (arg: Animation) => void;
 
-const Card: React.FC<Props> = ({ cards, setLoading, setPageNum }) => {
+const Card: React.FC<Props> = ({ cards, setLoading, nextPage }) => {
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
-  const [count, setCount] = useState(1);
   const [deckList, set] = useSprings<DeckProps>(cards.length, (i) => ({
     x: 0,
     y: i * -4,
@@ -39,18 +38,16 @@ const Card: React.FC<Props> = ({ cards, setLoading, setPageNum }) => {
   })) as useSpringsOverride<DeckProps>;
 
   useEffect(() => {
+    // console.log(gone.size, cards.length);
     if (gone.size === cards.length) {
       setLoading(true);
+      console.log(gone.size);
+      if (gone.size) {
+        gone.clear();
+        nextPage();
+      }
     }
-    if (gone.size === 20) {
-      setCount(count + 1);
-      setPageNum(count);
-    }
-  });
-
-  // useEffect(() => {
-  //   setPageNum(count);
-  // }, [count]);
+  }, [length]);
 
   useEffect(() => {
     setLength(cards.length);

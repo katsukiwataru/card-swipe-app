@@ -31,9 +31,13 @@ const App: React.FC<Props> = () => {
     getUsers();
   }, [pageNum]);
 
+  const nextPage = () => {
+    setPageNum(pageNum + 1);
+  };
+
   return (
     <>
-      <Card cards={cards} setLoading={setLoading} setPageNum={setPageNum} />
+      <Card key={pageNum} cards={cards} setLoading={setLoading} nextPage={nextPage} />
       {error && (
         <ErrorTitle>
           <p>some error occurred, while fetching api</p>
