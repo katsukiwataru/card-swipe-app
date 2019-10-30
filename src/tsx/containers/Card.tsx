@@ -3,6 +3,7 @@ import { useSprings, UseSpringProps, AnimatedValue } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import Button from '../components/Button';
 import CardComponent, { DeckProps } from '../components/Card';
+import { useCardsContext } from '../context/cardsContext';
 
 type useSpringsOverride<T extends Object> = [
   AnimatedValue<T>[],
@@ -10,7 +11,6 @@ type useSpringsOverride<T extends Object> = [
 ];
 
 type Props = {
-  cards: User[];
   setLoading: (loading: boolean) => void;
   nextPage: () => void;
 };
@@ -25,7 +25,8 @@ type Animation = {
 
 type animationFunction = (arg: Animation) => void;
 
-const Card: React.FC<Props> = ({ cards, setLoading, nextPage }) => {
+const Card: React.FC<Props> = ({ setLoading, nextPage }) => {
+  const cards = useCardsContext();
   const [length, setLength] = useState(cards.length);
   const [gone] = useState<Set<number>>(() => new Set());
   const [deckList, set] = useSprings<DeckProps>(cards.length, (i) => ({
@@ -38,10 +39,8 @@ const Card: React.FC<Props> = ({ cards, setLoading, nextPage }) => {
   })) as useSpringsOverride<DeckProps>;
 
   useEffect(() => {
-    // console.log(gone.size, cards.length);
     if (gone.size === cards.length) {
       setLoading(true);
-      console.log(gone.size);
       if (gone.size) {
         gone.clear();
         nextPage();
@@ -123,7 +122,7 @@ const Card: React.FC<Props> = ({ cards, setLoading, nextPage }) => {
         onMouseDownLeft={mouseDownLeft}
         onMouseDownRight={mouseDownRight}
       />
-      <CardComponent deckList={deckList} bind={bind} cards={cards} />
+      <CardComponent deckList={deckList} bind={bind} />
     </>
   );
 };

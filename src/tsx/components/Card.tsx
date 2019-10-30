@@ -2,6 +2,7 @@ import React from 'react';
 import { animated, interpolate } from 'react-spring';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import styled from 'styled-components';
+import { useCardsContext } from '../context/cardsContext';
 
 export type DeckProps = {
   x: number;
@@ -14,10 +15,10 @@ export type DeckProps = {
 type Props = {
   deckList: DeckProps[];
   bind: (i: number) => ReactEventHandlers;
-  cards: User[];
 };
 
-const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
+const Card: React.FC<Props> = ({ deckList, bind }) => {
+  const cards = useCardsContext();
   return (
     <>
       {deckList.map(({ x, y, rot, scale }, i) => (
@@ -50,13 +51,15 @@ const Card: React.FC<Props> = ({ deckList, bind, cards }) => {
 
 const UserName = styled.h1`
   word-wrap: break-word;
-  margin: 30px 30px;
+  margin: 14%;
   font-size: 28px;
 `;
 
 const UserAge = styled.p`
   word-wrap: break-word;
-  margin: 30px 30px;
+  position: absolute;
+  bottom: 10%;
+  left: 14%;
   font-size: 18px;
 `;
 
