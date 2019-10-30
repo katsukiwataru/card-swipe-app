@@ -12,10 +12,10 @@ const Button: React.FC<Props> = ({ onClickRight, onClickLeft, onMouseDown, onMou
   return (
     <>
       <ButtonsStyle>
-        <ButtonStyleNope onClick={onClickLeft} onMouseDown={onMouseDown} onMouseUp={onMouseUp} >
+        <ButtonStyleNope onClick={onClickLeft} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
           NOPE
         </ButtonStyleNope>
-        <ButtonStyleLike onClick={onClickRight} onMouseDown={onMouseDown} onMouseUp={onMouseUp} >
+        <ButtonStyleLike onClick={onClickRight} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
           LIKE
         </ButtonStyleLike>
       </ButtonsStyle>
