@@ -4,18 +4,18 @@ import styled from 'styled-components';
 type Props = {
   onClickRight: () => void;
   onClickLeft: () => void;
-  onMouseDownLeft: () => void;
-  onMouseDownRight: () => void;
+  onMouseDown: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onMouseUp: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const Button: React.FC<Props> = ({ onClickRight, onClickLeft, onMouseDownLeft, onMouseDownRight }) => {
+const Button: React.FC<Props> = ({ onClickRight, onClickLeft, onMouseDown, onMouseUp }) => {
   return (
     <>
       <ButtonsStyle>
-        <ButtonStyleNope onMouseDown={onMouseDownLeft} onClick={onClickLeft}>
+        <ButtonStyleNope onClick={onClickLeft} onMouseDown={onMouseDown} onMouseUp={onMouseUp} >
           NOPE
         </ButtonStyleNope>
-        <ButtonStyleLike onMouseDown={onMouseDownRight} onClick={onClickRight}>
+        <ButtonStyleLike onClick={onClickRight} onMouseDown={onMouseDown} onMouseUp={onMouseUp} >
           LIKE
         </ButtonStyleLike>
       </ButtonsStyle>

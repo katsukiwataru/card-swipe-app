@@ -105,13 +105,18 @@ const Card: React.FC<Props> = ({ setLoading, nextPage }) => {
     });
   };
 
-  const mouseDownLeft = () => {
-    // console.log('moving');
-    // TODO: buttonの長押しでstyleの変更
+  const mouseDownChangeStyle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.persist();
+    const buttonElement = event.target as HTMLButtonElement;
+    buttonElement.style.transition = '.2s ease-in';
+    buttonElement.style.border = '14px solid';
   };
-  const mouseDownRight = () => {
-    // console.log('moving');
-    // TODO: buttonの長押しでstyleの変更
+
+  const mouseUpChangeStyle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.persist();
+    const buttonElement = event.target as HTMLButtonElement;
+    buttonElement.style.transition = '.2s ease-out';
+    buttonElement.style.border = '0px solid';
   };
 
   return (
@@ -119,8 +124,8 @@ const Card: React.FC<Props> = ({ setLoading, nextPage }) => {
       <Button
         onClickRight={handleRightClick}
         onClickLeft={handleLeftClick}
-        onMouseDownLeft={mouseDownLeft}
-        onMouseDownRight={mouseDownRight}
+        onMouseDown={mouseDownChangeStyle}
+        onMouseUp={mouseUpChangeStyle}
       />
       <CardComponent deckList={deckList} bind={bind} />
     </>
