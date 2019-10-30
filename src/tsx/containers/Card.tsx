@@ -41,10 +41,10 @@ const Card: React.FC<Props> = ({ setLoading, nextPage }) => {
   useEffect(() => {
     if (gone.size === cards.length) {
       setLoading(true);
-      if (gone.size) {
-        gone.clear();
-        nextPage();
-      }
+    }
+    if (gone.size === cards.length && gone.size) {
+      gone.clear();
+      nextPage();
     }
   }, [length]);
 
