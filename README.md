@@ -1,7 +1,7 @@
 # card-swipe-app
 
 - this repository is creat for eureka
-- hosting https://cards-swipe-app.netlify.com
+- hosting [https://cards-swipe-app.netlify.com](https://cards-swipe-app.netlify.com)
 
 ## Available Scripts
 
