@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from './containers/Card';
 import styled from 'styled-components';
+import { CardsContext } from './context/cardsContext';
 
 interface Props {}
 
@@ -37,19 +38,21 @@ const App: React.FC<Props> = () => {
 
   return (
     <>
-      <Card key={pageNum} cards={cards} setLoading={setLoading} nextPage={nextPage} />
-      {error && (
-        <ErrorTitle>
-          <p>some error occurred, while fetching api</p>
-        </ErrorTitle>
-      )}
-      {loading && (
-        <LoadingTitle>
-          <p>
-            fetching books for "<strong>User</strong>"
-          </p>
-        </LoadingTitle>
-      )}
+      <CardsContext.Provider value={cards}>
+        <Card key={pageNum} setLoading={setLoading} nextPage={nextPage} />
+        {error && (
+          <ErrorTitle>
+            <p>some error occurred, while fetching api</p>
+          </ErrorTitle>
+        )}
+        {loading && (
+          <LoadingTitle>
+            <p>
+              fetching books for "<strong>User</strong>"
+            </p>
+          </LoadingTitle>
+        )}
+      </CardsContext.Provider>
     </>
   );
 };
