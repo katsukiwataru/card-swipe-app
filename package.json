@@ -31,7 +31,7 @@
   "dependencies": {
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
-    "@types/styled-components": "^4.1.19",
+    "@types/styled-components": "^5.1.1",
     "@whatasoda/eslint-config": "github:whatasoda/eslint-config",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.9.0",
